@@ -6,14 +6,14 @@ email jaj256@cornell.edu
 
 genome dm6
 	
-track LACZ_fwd
+track LACZ_PROseq_fwd
 shortLabel LACZ PRO-seq fwd
 longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
 color 255,0,0
 type bigWig 100 0
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
 
-track LACZ_rev
+track LACZ_PROseq_rev
 shortLabel LACZ PRO-seq rev
 longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
 negateValues on
@@ -21,14 +21,14 @@ altColor 0,0,255
 type bigWig -100 0
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
 
-track GAF_fwd
+track GAF_PROseq_fwd
 shortLabel GAF PRO-seq fwd
 longLabel GAF replicate-merged spike-in normalized PRO-seq signal forward strand
 color 255,0,0
 type bigWig 100 0
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/GAF_PROseq_fwd.bw
 
-track GAF_rev
+track GAF_PROseq_rev
 shortLabel GAF PRO-seq rev
 longLabel GAF replicate-merged spike-in normalized PRO-seq signal reverse strand
 negateValues on
@@ -36,47 +36,174 @@ altColor 0,0,255
 type bigWig -100 0
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/GAF_PROseq_rev.bw
 
-track LACZ_fwd
-shortLabel LACZ PRO-seq fwd
-longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
+track BAP170_PROseq_fwd
+shortLabel BAP170 PRO-seq fwd
+longLabel BAP170 replicate-merged spike-in normalized PRO-seq signal forward strand
 color 255,0,0
 type bigWig 100 0
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/BAP170_PROseq_fwd.bw
 
-track LACZ_rev
-shortLabel LACZ PRO-seq rev
-longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
+track BAP170_PROseq_rev
+shortLabel BAP170 PRO-seq rev
+longLabel BAP170 replicate-merged spike-in normalized PRO-seq signal reverse strand
 negateValues on
 altColor 0,0,255
 type bigWig -100 0
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/BAP170_PROseq_rev.bw
 
-track LACZ_fwd
-shortLabel LACZ PRO-seq fwd
-longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
+track NURF301_PROseq_fwd
+shortLabel NURF301 PRO-seq fwd
+longLabel NURF301 replicate-merged spike-in normalized PRO-seq signal forward strand
 color 255,0,0
 type bigWig 100 0
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301_PROseq_fwd.bw
 
-track LACZ_rev
-shortLabel LACZ PRO-seq rev
-longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
+track NURF301_PROseq_rev
+shortLabel NURF301 PRO-seq rev
+longLabel NURF301 replicate-merged spike-in normalized PRO-seq signal reverse strand
 negateValues on
 altColor 0,0,255
 type bigWig -100 0
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301_PROseq_rev.bw
 
-track LACZ_fwd
-shortLabel LACZ PRO-seq fwd
-longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
+track NURF301BAP170_PROseq_fwd
+shortLabel NURF301BAP170 PRO-seq fwd
+longLabel NURF301BAP170 replicate-merged spike-in normalized PRO-seq signal forward strand
 color 255,0,0
 type bigWig 100 0
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301BAP170_PROseq_fwd.bw
 
-track LACZ_rev
-shortLabel LACZ PRO-seq rev
-longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
+track NURF301BAP170_PROseq_rev
+shortLabel NURF301BAP170 PRO-seq rev
+longLabel NURF301BAP170 replicate-merged spike-in normalized PRO-seq signal reverse strand
 negateValues on
 altColor 0,0,255
 type bigWig -100 0
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301BAP170_PROseq_rev.bw
+
+track LACZ_ATACDHS
+shortLabel LACZ ATAC-seq
+longLabel LACZ replicate-merged normalized ATAC-seq signal (fragments < 120 bp)
+color 91,95,102
+type bigWig 0 300
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/LACZ_ATACDHS.bw
+
+track GAF_ATACDHS
+shortLabel GAF ATAC-seq
+longLabel GAF replicate-merged normalized ATAC-seq signal (fragments < 120 bp)
+color 91,95,102
+type bigWig 0 300
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/GAF_ATACDHS.bw
+
+track BAP170_ATACDHS
+shortLabel BAP170 ATAC-seq
+longLabel BAP170 replicate-merged normalized ATAC-seq signal (fragments < 120 bp)
+color 91,95,102
+type bigWig 0 300
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/BAP170_ATACDHS.bw
+
+track NURF301_ATACDHS
+shortLabel NURF301 ATAC-seq
+longLabel NURF301 replicate-merged normalized ATAC-seq signal (fragments < 120 bp)
+color 91,95,102
+type bigWig 0 300
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/NURF301_ATACDHS.bw
+
+track NURF301BAP170_ATACDHS
+shortLabel NURF301BAP170 ATAC-seq
+longLabel NURF301BAP170 replicate-merged normalized ATAC-seq signal (fragments < 120 bp)
+color 91,95,102
+type bigWig 0 300
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/NURF301BAP170_ATACDHS.bw
+
+track LACZ_RNAseq_fwd
+shortLabel LACZ RNA-seq forward
+longLabel LACZ replicate-merged spike-in normalized 3'RNA-seq signal forward strand
+color 255,0,0
+type bigWig 0 50
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/LACZ_RNAseq_fwd.bw
+
+track LACZ_RNAseq_rev
+shortLabel LACZ RNA-seq reverse
+longLabel LACZ replicate-merged spike-in normalized 3'RNA-seq signal reverse strand
+altColor 0,0,255
+negateValues on
+type bigWig -50 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/LACZ_RNAseq_rev.bw
+
+track GAF_RNAseq_fwd
+shortLabel GAF RNA-seq forward
+longLabel GAF replicate-merged spike-in normalized 3'RNA-seq signal forward strand
+color 255,0,0
+type bigWig 0 50
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/GAF_RNAseq_fwd.bw
+
+track GAF_RNAseq_rev
+shortLabel GAF RNA-seq reverse
+longLabel GAF replicate-merged spike-in normalized 3'RNA-seq signal reverse strand
+altColor 0,0,255
+negateValues on
+type bigWig -50 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/GAF_RNAseq_rev.bw
+
+track BAP170_RNAseq_fwd
+shortLabel BAP170 RNA-seq forward
+longLabel BAP170 replicate-merged spike-in normalized 3'RNA-seq signal forward strand
+color 255,0,0
+type bigWig 0 50
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/BAP170_RNAseq_fwd.bw
+
+track BAP170_RNAseq_rev
+shortLabel BAP170 RNA-seq reverse
+longLabel BAP170 replicate-merged spike-in normalized 3'RNA-seq signal reverse strand
+altColor 0,0,255
+negateValues on
+type bigWig -50 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/BAP170_RNAseq_rev.bw
+
+track NURF301_RNAseq_fwd
+shortLabel NURF301 RNA-seq forward
+longLabel NURF301 replicate-merged spike-in normalized 3'RNA-seq signal forward strand
+color 255,0,0
+type bigWig 0 50
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/NURF301_RNAseq_fwd.bw
+
+track NURF301_RNAseq_rev
+shortLabel NURF301 RNA-seq reverse
+longLabel NURF301 replicate-merged spike-in normalized 3'RNA-seq signal reverse strand
+altColor 0,0,255
+negateValues on
+type bigWig -50 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301_RNAseq_rev.bw
+
+track NURF301BAP170_RNAseq_fwd
+shortLabel NURF301BAP170 RNA-seq forward
+longLabel NURF301BAP170 replicate-merged spike-in normalized 3'RNA-seq signal forward strand
+color 255,0,0
+type bigWig 0 50
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/NURF301BAP170_RNAseq_fwd.bw
+
+track NURF301BAP170_RNAseq_rev
+shortLabel NURF301BAP170 RNA-seq reverse
+longLabel NURF301BAP170 replicate-merged spike-in normalized 3'RNA-seq signal reverse strand
+altColor 0,0,255
+negateValues on
+type bigWig -50 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301BAP170_RNAseq_rev.bw
+
+track GAF_CutAndRun
+shortLabel GAF CUT&RUN
+longLabel GAF CUT&RUN signal
+color 7,79,17
+type bigWig
+autoScale on
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/CutAndRun/GAF_CUTandRUN.bw
+
+track NURF_CutAndRun
+shortLabel NURF CUT&RUN
+longLabel NURF301 CUT&RUN signal
+color 7,79,17
+type bigWig
+autoScale on
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/CutAndRun/NURF_CUTandRUN.bw
+
