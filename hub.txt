@@ -10,16 +10,73 @@ track LACZ_fwd
 shortLabel LACZ PRO-seq fwd
 longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
 color 255,0,0
-type bigWig
+type bigWig 100 0
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
-
 
 track LACZ_rev
 shortLabel LACZ PRO-seq rev
 longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
 negateValues on
 altColor 0,0,255
-type bigWig
+type bigWig -100 0
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
 
+track GAF_fwd
+shortLabel GAF PRO-seq fwd
+longLabel GAF replicate-merged spike-in normalized PRO-seq signal forward strand
+color 255,0,0
+type bigWig 100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/GAF_PROseq_fwd.bw
 
+track GAF_rev
+shortLabel GAF PRO-seq rev
+longLabel GAF replicate-merged spike-in normalized PRO-seq signal reverse strand
+negateValues on
+altColor 0,0,255
+type bigWig -100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/GAF_PROseq_rev.bw
+
+track LACZ_fwd
+shortLabel LACZ PRO-seq fwd
+longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
+color 255,0,0
+type bigWig 100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
+
+track LACZ_rev
+shortLabel LACZ PRO-seq rev
+longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
+negateValues on
+altColor 0,0,255
+type bigWig -100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
+
+track LACZ_fwd
+shortLabel LACZ PRO-seq fwd
+longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
+color 255,0,0
+type bigWig 100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
+
+track LACZ_rev
+shortLabel LACZ PRO-seq rev
+longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
+negateValues on
+altColor 0,0,255
+type bigWig -100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
+
+track LACZ_fwd
+shortLabel LACZ PRO-seq fwd
+longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
+color 255,0,0
+type bigWig 100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
+
+track LACZ_rev
+shortLabel LACZ PRO-seq rev
+longLabel LACZ replicate-merged spike-in normalized PRO-seq signal reverse strand
+negateValues on
+altColor 0,0,255
+type bigWig -100 0
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
