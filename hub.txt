@@ -10,7 +10,7 @@ track PROseq
 compositeTrack on
 shortLabel PRO-seq composite track
 longLabel Replicate-merged spike-in normalized PRO-seq signal
-type bigWig
+type bed 3
 allButtonPair on
 
 	track LACZ_multiWig
