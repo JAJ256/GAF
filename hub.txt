@@ -1,0 +1,41 @@
+hub GAF_trackHub
+shortLabel GAF Track Hub
+longLabel Data from 'Pioner factor GAF cooperates with PBAP and NURF to regulate transcription'
+useOneFile on
+email jaj256@cornell.edu
+
+genome dm6
+
+track PROseq
+compositeTrack on
+shortLabel PRO-seq composite track
+longLabel Replicate-merged spike-in normalized PRO-seq signal
+type bigWig
+allButtonPair on
+
+	track LACZ_multiWig
+	parent PROseq on
+	aggregate transparentOverlay
+	type bigWig
+	container multiWig
+	shortLabel LACZ
+	longLabel LACZ
+	visibility full
+		
+		track LACZ_fwd
+		parent LACZ_multiWig
+		color 255,0,0
+		type bigWig
+		autoScale group
+		bigDataUrl https://github.com/JAJ256/GAF/blob/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw?raw=true
+
+		track LACZ_rev
+		parent LACZ_multiWig
+		negateValues on
+		altColor 0,0,255
+		type bigWig
+		autoScale group
+		bigDataUrl https://github.com/JAJ256/GAF/blob/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw?raw=true
+
+	
+
