@@ -121,7 +121,7 @@ shortLabel LACZ RNA-seq forward
 longLabel LACZ replicate-merged spike-in normalized 3'RNA-seq signal forward strand
 color 255,0,0
 type bigWig 0 50
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/LACZ_RNAseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/LACZ_RNAseq_fwd.bw
 
 track LACZ_RNAseq_rev
 shortLabel LACZ RNA-seq reverse
@@ -136,7 +136,7 @@ shortLabel GAF RNA-seq forward
 longLabel GAF replicate-merged spike-in normalized 3'RNA-seq signal forward strand
 color 255,0,0
 type bigWig 0 50
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/GAF_RNAseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/GAF_RNAseq_fwd.bw
 
 track GAF_RNAseq_rev
 shortLabel GAF RNA-seq reverse
@@ -151,7 +151,7 @@ shortLabel BAP170 RNA-seq forward
 longLabel BAP170 replicate-merged spike-in normalized 3'RNA-seq signal forward strand
 color 255,0,0
 type bigWig 0 50
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/BAP170_RNAseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/BAP170_RNAseq_fwd.bw
 
 track BAP170_RNAseq_rev
 shortLabel BAP170 RNA-seq reverse
@@ -166,7 +166,7 @@ shortLabel NURF301 RNA-seq forward
 longLabel NURF301 replicate-merged spike-in normalized 3'RNA-seq signal forward strand
 color 255,0,0
 type bigWig 0 50
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/NURF301_RNAseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301_RNAseq_fwd.bw
 
 track NURF301_RNAseq_rev
 shortLabel NURF301 RNA-seq reverse
@@ -181,7 +181,7 @@ shortLabel NURF301BAP170 RNA-seq forward
 longLabel NURF301BAP170 replicate-merged spike-in normalized 3'RNA-seq signal forward strand
 color 255,0,0
 type bigWig 0 50
-bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normned/NURF301BAP170_RNAseq_fwd.bw
+bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301BAP170_RNAseq_fwd.bw
 
 track NURF301BAP170_RNAseq_rev
 shortLabel NURF301BAP170 RNA-seq reverse
