@@ -8,7 +8,7 @@ genome dm6
 	
 track LACZ_PROseq_fwd
 shortLabel LACZ PRO-seq fwd
-longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward strand
+longLabel 
 color 255,0,0
 type bigWig 100 0
 maxHeightPixels 100:16:8
