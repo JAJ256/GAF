@@ -10,27 +10,18 @@ track PROseq
 compositeTrack on
 shortLabel PRO-seq composite track
 longLabel Replicate-merged spike-in normalized PRO-seq signal
-type bed 3
+type bigWig
 allButtonPair on
-
-	track LACZ_multiWig
-	parent PROseq on
-	aggregate transparentOverlay
-	type bigWig
-	container multiWig
-	shortLabel LACZ
-	longLabel LACZ
-	visibility full
 		
 		track LACZ_fwd
-		parent LACZ_multiWig
+		parent PROseq
 		color 255,0,0
 		type bigWig
 		autoScale group
 		bigDataUrl https://github.com/JAJ256/GAF/blob/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw?raw=true
 
 		track LACZ_rev
-		parent LACZ_multiWig
+		parent PROseq
 		negateValues on
 		altColor 0,0,255
 		type bigWig
