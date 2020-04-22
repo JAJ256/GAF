@@ -12,7 +12,6 @@ longLabel LACZ replicate-merged spike-in normalized PRO-seq signal forward stran
 color 255,0,0
 type bigWig 100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_fwd.bw
 
 track LACZ_PROseq_rev
@@ -22,7 +21,6 @@ negateValues on
 altColor 0,0,255
 type bigWig -100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/LACZ_PROseq_rev.bw
 
 track GAF_PROseq_fwd
@@ -31,7 +29,6 @@ longLabel GAF replicate-merged spike-in normalized PRO-seq signal forward strand
 color 255,0,0
 type bigWig 100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/GAF_PROseq_fwd.bw
 
 track GAF_PROseq_rev
@@ -41,7 +38,6 @@ negateValues on
 altColor 0,0,255
 type bigWig -100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/GAF_PROseq_rev.bw
 
 track BAP170_PROseq_fwd
@@ -60,7 +56,6 @@ negateValues on
 altColor 0,0,255
 type bigWig -100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/BAP170_PROseq_rev.bw
 
 track NURF301_PROseq_fwd
@@ -69,7 +64,6 @@ longLabel NURF301 replicate-merged spike-in normalized PRO-seq signal forward st
 color 255,0,0
 type bigWig 100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301_PROseq_fwd.bw
 
 track NURF301_PROseq_rev
@@ -79,7 +73,6 @@ negateValues on
 altColor 0,0,255
 type bigWig -100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301_PROseq_rev.bw
 
 track NURF301BAP170_PROseq_fwd
@@ -88,7 +81,6 @@ longLabel NURF301BAP170 replicate-merged spike-in normalized PRO-seq signal forw
 color 255,0,0
 type bigWig 100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301BAP170_PROseq_fwd.bw
 
 track NURF301BAP170_PROseq_rev
@@ -98,7 +90,6 @@ negateValues on
 altColor 0,0,255
 type bigWig -100 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/PROseq/merged_normed/NURF301BAP170_PROseq_rev.bw
 
 track LACZ_ATACDHS
@@ -107,7 +98,6 @@ longLabel LACZ replicate-merged normalized ATAC-seq signal (fragments < 120 bp)
 color 91,95,102
 type bigWig 0 300
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/LACZ_ATACDHS.bw
 
 track GAF_ATACDHS
@@ -116,7 +106,6 @@ longLabel GAF replicate-merged normalized ATAC-seq signal (fragments < 120 bp)
 color 91,95,102
 type bigWig 0 300
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/GAF_ATACDHS.bw
 
 track BAP170_ATACDHS
@@ -125,7 +114,6 @@ longLabel BAP170 replicate-merged normalized ATAC-seq signal (fragments < 120 bp
 color 91,95,102
 type bigWig 0 300
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/BAP170_ATACDHS.bw
 
 track NURF301_ATACDHS
@@ -134,7 +122,6 @@ longLabel NURF301 replicate-merged normalized ATAC-seq signal (fragments < 120 b
 color 91,95,102
 type bigWig 0 300
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/NURF301_ATACDHS.bw
 
 track NURF301BAP170_ATACDHS
@@ -143,7 +130,6 @@ longLabel NURF301BAP170 replicate-merged normalized ATAC-seq signal (fragments <
 color 91,95,102
 type bigWig 0 300
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/ATACseq/DHS/merged_normed/NURF301BAP170_ATACDHS.bw
 
 track LACZ_RNAseq_fwd
@@ -152,7 +138,6 @@ longLabel LACZ replicate-merged spike-in normalized 3'RNA-seq signal forward str
 color 255,0,0
 type bigWig 0 50
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/LACZ_RNAseq_fwd.bw
 
 track LACZ_RNAseq_rev
@@ -162,7 +147,6 @@ altColor 0,0,255
 negateValues on
 type bigWig -50 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/LACZ_RNAseq_rev.bw
 
 track GAF_RNAseq_fwd
@@ -171,7 +155,6 @@ longLabel GAF replicate-merged spike-in normalized 3'RNA-seq signal forward stra
 color 255,0,0
 type bigWig 0 50
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/GAF_RNAseq_fwd.bw
 
 track GAF_RNAseq_rev
@@ -181,7 +164,6 @@ altColor 0,0,255
 negateValues on
 type bigWig -50 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/GAF_RNAseq_rev.bw
 
 track BAP170_RNAseq_fwd
@@ -190,7 +172,6 @@ longLabel BAP170 replicate-merged spike-in normalized 3'RNA-seq signal forward s
 color 255,0,0
 type bigWig 0 50
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/BAP170_RNAseq_fwd.bw
 
 track BAP170_RNAseq_rev
@@ -200,7 +181,6 @@ altColor 0,0,255
 negateValues on
 type bigWig -50 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/BAP170_RNAseq_rev.bw
 
 track NURF301_RNAseq_fwd
@@ -209,7 +189,6 @@ longLabel NURF301 replicate-merged spike-in normalized 3'RNA-seq signal forward 
 color 255,0,0
 type bigWig 0 50
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301_RNAseq_fwd.bw
 
 track NURF301_RNAseq_rev
@@ -219,7 +198,6 @@ altColor 0,0,255
 negateValues on
 type bigWig -50 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301_RNAseq_rev.bw
 
 track NURF301BAP170_RNAseq_fwd
@@ -228,7 +206,6 @@ longLabel NURF301BAP170 replicate-merged spike-in normalized 3'RNA-seq signal fo
 color 255,0,0
 type bigWig 0 50
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301BAP170_RNAseq_fwd.bw
 
 track NURF301BAP170_RNAseq_rev
@@ -238,7 +215,6 @@ altColor 0,0,255
 negateValues on
 type bigWig -50 0
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/RNAseq/merged_normed/NURF301BAP170_RNAseq_rev.bw
 
 track GAF_CutAndRun
@@ -248,7 +224,6 @@ color 7,79,17
 type bigWig
 autoScale on
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/CutAndRun/GAF_CUTandRUN.bw
 
 track NURF_CutAndRun
@@ -258,6 +233,5 @@ color 7,79,17
 type bigWig
 autoScale on
 maxHeightPixels 100:16:8
-visibility squish
 bigDataUrl https://github.com/JAJ256/GAF/raw/master/bw/CutAndRun/NURF_CUTandRUN.bw
 
