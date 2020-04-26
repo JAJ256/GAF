@@ -3,7 +3,7 @@
 Julius Judd<sup>1</sup>, Fabiana M. Duarte<sup>2</sup>, and John T. Lis<sup>1</sup>
 
 <sup>1</sup>Department of Molecular Biology and Genetics, Cornell University, Ithaca, New York 14835, USA
-<sup>2</sup>Broad Institute of MIT and Harvard, Cambridge, MA 02142, USA
+<sup>2</sup>2Department of Stem Cell and Regenerative Biology, Harvard University, Cambridge, MA 02138, USA
 
 
 This is a GitHub repository that contains supplemental data for the paper "Pioneer factor GAF cooperates with PBAP and NURF to regulate transcription".  
