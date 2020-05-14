@@ -1,15 +1,17 @@
 # Supplemental Data for 'Pioneer factor GAF cooperates with PBAP and NURF to regulate transcription'
 
-Julius Judd<sup>1</sup>, Fabiana M. Duarte<sup>2</sup>, and John T. Lis<sup>1</sup>
+Julius Judd<sup>1</sup>, Fabiana M. Duarte<sup>1,2</sup>, and John T. Lis<sup>1</sup>
 
 <sup>1</sup>Department of Molecular Biology and Genetics, Cornell University, Ithaca, New York 14835, USA
 <sup>2</sup>2Department of Stem Cell and Regenerative Biology, Harvard University, Cambridge, MA 02138, USA
 
 
-This is a GitHub repository that contains supplemental data for the paper "Pioneer factor GAF cooperates with PBAP and NURF to regulate transcription".  
+This is a GitHub repository that contains supplemental data for the paper "Pioneer factor GAF cooperates with PBAP and NURF to regulate transcription".
+Preprint: https://doi.org/10.1101/2020.05.10.087262
+Raw data: GSE149336 (GEO) PRJNA627972 (SRA)
 
 ## Analysis code
-All code used for analysis can be found in the file "GAF_SupplementalInformation_JAJ.Rmd", or in the accompanying pdf file.  
+All code used for analysis can be found in the file "Supplemental_Code.Rmd", or in the accompanying pdf file.  
 
 ## Data
 ### DESeq_results 
@@ -23,6 +25,10 @@ Contains bigWig format files of data. ATAC-seq, PROseq, RNAseq, and CUTANDRUN da
 
 ### Genome
 Contains a bed file of PRO-cap corrected dm6 genes.
+
+## UCSC trackhub
+The file "hub.txt" can be loaded at the UCSC genome browser here: https://genome.ucsc.edu/cgi-bin/hgHubConnect. Paste the raw url (https://raw.githubusercontent.com/JAJ256/GAF/master/hub.txt) and click "Add Hub".
+
 
 
 
