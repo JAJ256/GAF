@@ -3,7 +3,7 @@ title: Supplemental Information for 'Pioneer factor GAF cooperates with PBAP and
   to regulate transcription'
 author:
     - Julius Judd^[Department of Molecular Biology and Genetics, Cornell University, Ithaca, New York 14835, USA]
-    - Fabiana M. Duarte^[Broad Institute of MIT and Harvard, Cambridge, MA 02142, USA]
+    - Fabiana M. Duarte\*^[Broad Institute of MIT and Harvard, Cambridge, MA 02142, USA]
     - John T. Lis\*^[Correspondance to johnlis@cornell.edu]
 output:
   pdf_document: default
@@ -23,7 +23,7 @@ output:
 7. Supplementary Code 7. Session Info
 
 This file contains all code used to analyze data presented in 'Pioneer factor GAF cooperates with PBAP and NURF to regulate transcription'.  
-The goal of this document is reproducibility: This is the exact code used to generate the figures in the final version of the paper, and any user should be able to replicate our analyses starting from raw data (GSEXXXXX or SRPXXXXX).
+The goal of this document is reproducibility: This is the exact code used to generate the figures in the final version of the paper, and any user should be able to replicate our analyses starting from raw data (GSE149339 or PRJNA627972).
 \newpage
 
 # Supplementary Code 1. PRO-seq alignment pipeline  
@@ -1718,14 +1718,11 @@ CaR.lst <-
 # RPM normalizing CUT&RUN signal
 CaR.lst <- lapply(CaR.lst, RPMnorm)
 
-# Reading in list of ChIP-seq bigWigs
+# Reading in list of ChIP-seq bigWigs (published data)
 ChIP.lst <- 
     list(
         "GAF_ChIPseq" = tidyChromosomes(
           import.bw("bw/ChIPseq/GAF_ChIPseq.bw")
-          ),
-        "SP1_ChIPseq" = tidyChromosomes(
-          import.bw("bw/ChIPseq/SP1_ChIPseq.bw")
           ),
         "M1BP_ChIPseq" = tidyChromosomes(
           import.bw("bw/ChIPseq/M1BP_ChIPseq.bw")
@@ -1737,6 +1734,49 @@ ChIP.lst <-
 
 # RPM normalizing ChIP-seq signal
 ChIP.lst <- lapply(ChIP.lst, RPMnorm)
+
+# Reading in list of new ChIP-seq (generated for this paper)
+ChIPnew.lst <- 
+  list(
+    "LACZRNAi_GAF_ChIPseq_Rep1" = tidyChromosomes(
+      import.bw("bw/ChIPseq/raw_signal/LACZ_GAF_Rep1.bw")
+    ),
+    "LACZRNAi_GAF_ChIPseq_Rep2" = tidyChromosomes(
+      import.bw("bw/ChIPseq/raw_signal/LACZ_GAF_Rep2.bw")
+    ),
+    "GAFRNAi_GAF_ChIPseq_Rep1" = tidyChromosomes(
+      import.bw("bw/ChIPseq/raw_signal/GAF_GAF_Rep1.bw")
+    ),
+    "GAFRNAi_GAF_ChIPseq_Rep2" = tidyChromosomes(
+      import.bw("bw/ChIPseq/raw_signal/GAF_GAF_Rep2.bw")
+    ),
+    "BAPRNAi_GAF_ChIPseq_Rep1" = tidyChromosomes(
+      import.bw("bw/ChIPseq/raw_signal/BAP_GAF_Rep1.bw")
+    ),
+    "BAPRNAi_GAF_ChIPseq_Rep2" = tidyChromosomes(
+      import.bw("bw/ChIPseq/raw_signal/BAP_GAF_Rep2.bw")
+    )
+    )
+  )
+
+ChIPnew_merged.lst <- list(
+  "LACZRNAi_GAF_ChIPseq" = mergeGRangesData(
+    ChIPnew.lst$LACZRNAi_GAF_ChIPseq_Rep1,
+    ChIPnew.lst$LACZRNAi_GAF_ChIPseq_Rep2
+  ),
+  "GAFRNAi_GAF_ChIPseq" = mergeGRangesData(
+    ChIPnew.lst$GAFRNAi_GAF_ChIPseq_Rep1,
+    ChIPnew.lst$GAFRNAi_GAF_ChIPseq_Rep2
+  ),
+  "BAPRNAi_GAF_ChIPseq" = mergeGRangesData(
+    ChIPnew.lst$BAPRNAi_GAF_ChIPseq_Rep1,
+    ChIPnew.lst$BAPRNAi_GAF_ChIPseq_Rep2
+  )
+)
+
+# RPM normalizing new ChIP-seq data
+ChIPnew_merged.lst <- lapply(ChIPnew_merged.lst, RPMnorm)
+
 ```
 
 ## Generating count tables
@@ -2093,6 +2133,22 @@ export.bw(
   NURF301BAP170_merged.gr,
   "bw/ATACseq/MN/merged_normed/NURF301BAP170_ATACMN.bw")
 
+# Merging and saving new merged normalized ChIP-seq
+export.bw(
+  ChIPnew_merged.lst$LACZRNAi_GAF_ChIPseq,
+  "bw/ChIPseq/merged_normalized/LACZRNAi_GAFChIP.bw"
+)
+
+export.bw(
+  ChIPnew_merged.lst$GAFRNAi_GAF_ChIPseq,
+  "bw/ChIPseq/merged_normalized/GAFRNAi_GAFChIP.bw"
+)
+
+export.bw(
+  ChIPnew_merged.lst$BAPRNAi_GAF_ChIPseq,
+  "bw/ChIPseq/merged_normalized/BAPRNAi_GAFChIP.bw"
+)
+
 ```
 
 ## Reading back in normalized data
@@ -2222,16 +2278,19 @@ PROseq_M1BP.lst <- list(
     "bw/M1BP_PROseq/M1BP_rev.bw"
   )
 )
+
 ```
 
 ## Figure 1
 A - Overview cartoon (not made in R, inserted in Illustrator later)  
 B - PCA of promoter PRO-seq  
-C - glob1 browser shot  
-D - GAF-dependent promoters ATAC-seq (<120bp) metaprofile  
-E - GAF-dependent promoters PRO-seq (<120bp) metaprofile  
-F - Duplicate of E - easier to remove irrelevant lines from each later  
-G - GAF PR l2FC vs PBAP and NURF scatterplot  
+C - glob1 browser shot
+D - MA Plot of Promoter region PRO-seq GAF vs. LACZ
+E - GAF-dependent promoters ATAC-seq (<120bp) metaprofile  
+F - GAF-dependent promoters PRO-seq (<120bp) metaprofile  
+G - GAF ChIP-seq heatmaps in different RNAi conditions
+H - Duplicate of E - easier to remove irrelevant lines from each later  
+I - GAF PR l2FC vs PBAP and NURF scatterplot  
 
 ```{r, collapse = T, error = F, message = F, warning = F, eval = F, echo = T}
 # Panel A - just use plot spacer and insert cartoon in Illustrator later
@@ -2292,22 +2351,22 @@ F1B <- ggplot(PR.pca, aes(PC1, PC2, color = RNAi)) +
                        expand = c(0,0),
                        breaks = c(-30,-15, 0, 15, 30))
 
-# Panel C - glob1 browser shot
-# Getting granges of gene
-glob1.gr <- genes.gr[which(genes.gr$tx_name == "glob1-RB")]
+# Panel C - E23 browser shot
+E23.gr <- genes.gr[which(genes.gr$tx_name == "E23-RC")]
 
-# Moving end of gene in (to condense plot)
-start(glob1.gr) <- start(glob1.gr) + 2000
+# moving end of gene in (to condense plot)
+start(E23.gr) <- start(E23.gr) + 19000
 
 # Plotting (see file browserPlotR.R for more detail)
 F1C <- browser_plotter.jj(
-    glob1.gr,
+    E23.gr,
     list("PROseq" = PROseq_normed_merged.lst, 
          "ATACDHS" = ATACDHS_normed_merged.lst,
-         "ChIPseq" = ChIP.lst["GAF_ChIPseq"]),
+         "ChIPseq" = ChIPnew_merged.lst),
     labs = c("LACZ", "GAF", "BAP", "NURF", "N+B",
              "LACZ", "GAF", "BAP", "NURF", "N+B",
-             "GAF ChIP"),
+             "LACZ RNAi GAF ChIP", "GAF RNAi GAF ChIP",
+             "BAP RNAi GAF ChIP"),
     scale_bar_size = 1000,
     pad_left = 0,
     pad_right = 500,
@@ -2319,7 +2378,8 @@ F1C <- browser_plotter.jj(
         "ChIPseq" = TRUE)
     )
 
-# Panel D - GAF-dependent promoters ATAC-seq (<120bp) metaprofile
+
+# Panel D - MA plot of promoter region GAF vs LACZ
 # Get df of counts for running DESeq2
 PR.df <- data.frame(PR.tbl, row.names = "tx_name")
 PR_col_data.df <- data.frame(
@@ -2355,6 +2415,12 @@ PR_GAFres.df$tx_name <- row.names(PR_GAFres.df)
 # Writing results object as file
 write_tsv(PR_GAFres.df, "DESeq_results/GAF_PR_res.tsv")
 
+# Plotting
+F1D <- maplot.jj(PR_GAF.res)
+
+
+# Panel E - GAF-dependent promoters ATAC-seq (<120bp) metaprofile
+
 # Getting list of GAF-dependent promoters (FDR 0.01)
 gafDepPR.gr <- 
     genes.gr[which(
@@ -2381,7 +2447,7 @@ gafDepPR_ATACDHSSub.mat$sample.name <-
     )
 
 # Plotting
-F1D <- ggMetaplot(gafDepPR_ATACDHSSub.mat) +
+F1E <- ggMetaplot(gafDepPR_ATACDHSSub.mat) +
     gg_color_scale_RNAi_ATACDHS + 
     gg_fill_scale_RNAi_ATACDHS +
     scale_x_continuous(
@@ -2393,7 +2459,8 @@ F1D <- ggMetaplot(gafDepPR_ATACDHSSub.mat) +
         expand = c(0,0)
     )+
   ggtitle("ATAC < 120 bp")
-# Panel E - GAF-dependent promoters PRO-seq (<120bp) metaprofile 
+
+# Panel F - GAF-dependent promoters PRO-seq (<120bp) metaprofile 
 # Getting subsampled count matrices
 gafDepPR_proSeqSub.mat <- 
      metaSubsample(
@@ -2429,7 +2496,7 @@ gafDepGB_proSeqSub.mat$sample.name <-
            
 
 # Plotting promoter
-F1EFa <- ggMetaplot(gafDepPR_proSeqSub.mat)+
+F1FHa <- ggMetaplot(gafDepPR_proSeqSub.mat)+
     gg_color_scale_RNAi_PROseq + 
     gg_fill_scale_RNAi_PROseq +
     scale_x_continuous(
@@ -2448,7 +2515,7 @@ F1EFa <- ggMetaplot(gafDepPR_proSeqSub.mat)+
              
 
 # Plotting gene body
-F1EFb <- ggMetaplot(gafDepGB_proSeqSub.mat)+
+F1FHb <- ggMetaplot(gafDepGB_proSeqSub.mat)+
     gg_color_scale_RNAi_PROseq + 
     gg_fill_scale_RNAi_PROseq +
     scale_y_continuous(
@@ -2464,9 +2531,35 @@ F1EFb <- ggMetaplot(gafDepGB_proSeqSub.mat)+
         ) +
     ylab(NULL)
 
-# Panel F - Duplicate of E - easier to remove irrelevant lines from each later
+# Panel G - GAF ChIP-seq metaplots after GAF/LACZ/BAP RNAi
+gafDepPR_GAFChIP.mat <- 
+     metaSubsample(
+        dataset.gr = ChIPnew_merged.lst,
+        regions.gr = promoters(gafDepPR.gr, 500, 500),
+        binsize = 10,
+        first.output.xval = -500,
+        expand_ranges = TRUE
+    )
 
-# Panel G - GAF PR l2FC vs PBAP and NURF scatterplot
+F1G <- ggMetaplot(gafDepPR_GAFChIP.mat)+
+    gg_color_scale_RNAi_PROseq + 
+    gg_fill_scale_RNAi_PROseq +
+    scale_x_continuous(
+        limits = c(-500, 500),
+        expand = c(0,0),
+        breaks = c(-500, -250, 0, 250, 500)
+    ) +
+     scale_y_continuous(
+         limits = c(0, 0.6),
+         breaks = c(0, 0.3, 0.6),
+         expand = c(0,0)
+     )+
+  ggtitle("GAF ChIP-seq") 
+ggsave("Fig1G.pdf", F1G, width = 3.5, height = 1.6)
+
+# Panel H - Duplicate of E - easier to remove irrelevant lines from each later
+
+# Panel I - GAF PR l2FC vs PBAP and NURF scatterplot
 # Running DESeq2 for BAP and NURF vs LACZ control
 PR_BAP.res <-
   subset_DESeq.jj(
@@ -2488,30 +2581,29 @@ PR_NURF.res <-
     ~ RNAi
   )
 
-
 # Plotting GAF vs BAP
-F1Ga <- fc_corr.jj(PR_GAF.res, PR_BAP.res)+
+F1Ha <- fc_corr.jj(PR_GAF.res, PR_BAP.res)+
   coord_cartesian(xlim = c(-8, 8), ylim = c(-8, 8), expand = FALSE)+
   xlab("GAF PR l2FC")+
   ylab("BAP170 PR l2FC")
 
 # Plotting GAF vs NURF
-F1Gb <- fc_corr.jj(PR_GAF.res, PR_NURF.res)+
+F1Hb <- fc_corr.jj(PR_GAF.res, PR_NURF.res)+
   coord_cartesian(xlim = c(-8, 8), ylim = c(-8, 8), expand = FALSE)+
   xlab("GAF PR l2FC")+
   ylab("BAP170 PR l2FC")
   
 # Layout for plotting
 F1_layout <- "
-#C#
-ADE
-BFG
-BHI
+#CDK
+AEF#
+BGH#
+BIJ#
 "
 
 # Combining all panels
-F1_all <- F1B + F1C + F1D + F1EFa + 
-  F1EFb + F1EFa + F1EFb + F1Ga + F1Gb + 
+F1_all <- F1B + F1C + F1D + F1E + F1FHa + 
+  F1FHb + F1FHa + F1FHb + F1Ha + F1Hb + F1G +
     plot_layout(guides = "collect",
                 design = F1_layout) +
     plot_annotation(tag_levels = 'A') & 
@@ -3443,7 +3535,7 @@ PR_NURFBAP.res <-
     ~RNAi)
 
 # Plotting
-S5A <- maplot.jj(PR_GAF.res)
+S5A <- maplot.jj(PR_GAF.res) # Moved to F1D, remove here
 S5B <- maplot.jj(PR_BAP.res)
 S5C <- maplot.jj(PR_NURF.res)
 S5D <- maplot.jj(PR_NURFBAP.res)
@@ -3595,7 +3687,7 @@ res_write_tsv.jj(RNA_NURFBAP.res, "DESeq_results/NURFBAP_RNA_res.tsv")
 ```
 
 ## Figure S6
-A - Browser shot of E23-RC  
+A - Browser shot of glob1-RB  
 B - Browser shot of Cyp9c1  
 C - Browser shot of Fatp3-RA  
 D - Browser shot of geko RB  
@@ -3604,21 +3696,21 @@ Browser shots all made with R package found here:
 [https://github.com/JAJ256/browser_plot.R](https://github.com/JAJ256/browser_plot.R)  
 Analysis in this paper performed with commit:   [1352d5c](https://github.com/JAJ256/browser_plot.R/tree/1352d5c67c117046c5731596750be19f2cc23df8)  
 ```{r, collapse = T, error = F, message = F, warning = F, eval = F, echo = T}
-# A - E23-RC
-E23.gr <- genes.gr[which(genes.gr$tx_name == "E23-RC")]
+# A - glob1-RB
+glob1.gr <- genes.gr[which(genes.gr$tx_name == "glob1-RB")]
 
-# moving end of gene in (to condense plot)
-start(E23.gr) <- start(E23.gr) + 10000
+# Moving end of gene in (to condense plot)
+start(glob1.gr) <- start(glob1.gr) + 2000
 
 # Plotting (see file browserPlotR.R for more detail)
 S6A <- browser_plotter.jj(
-    E23.gr,
+    glob1.gr,
     list("PROseq" = PROseq_normed_merged.lst, 
          "ATACDHS" = ATACDHS_normed_merged.lst,
-         "ChIPseq" = ChIP.lst["GAF_ChIPseq"]),
+         "ChIPseq" = ChIPnew_merged.lst),
     labs = c("LACZ", "GAF", "BAP", "NURF", "N+B",
              "LACZ", "GAF", "BAP", "NURF", "N+B",
-             "GAF ChIP"),
+             "LACZGAFChIP", "GAFGAFChIP", "BAPGAFChIP"),
     scale_bar_size = 1000,
     pad_left = 0,
     pad_right = 500,
@@ -3636,12 +3728,12 @@ Cyp9c1.gr <- genes.gr[which(genes.gr$tx_name == "Cyp9c1-RA")]
 # Plotting (see file browserPlotR.R for more detail)
 S6B <- browser_plotter.jj(
     Cyp9c1.gr,
-    list("PROseq" = PROseq_normed_merged.lst, 
+   list("PROseq" = PROseq_normed_merged.lst, 
          "ATACDHS" = ATACDHS_normed_merged.lst,
-         "ChIPseq" = ChIP.lst["GAF_ChIPseq"]),
+         "ChIPseq" = ChIPnew_merged.lst),
     labs = c("LACZ", "GAF", "BAP", "NURF", "N+B",
              "LACZ", "GAF", "BAP", "NURF", "N+B",
-             "GAF ChIP"),
+             "LACZGAFChIP", "GAFGAFChIP", "BAPGAFChIP"),
     scale_bar_size = 1000,
     pad_left = 500,
     pad_right = 0,
@@ -3661,10 +3753,10 @@ S6C <- browser_plotter.jj(
     Fatp3.gr,
     list("PROseq" = PROseq_normed_merged.lst, 
          "ATACDHS" = ATACDHS_normed_merged.lst,
-         "ChIPseq" = ChIP.lst["GAF_ChIPseq"]),
+         "ChIPseq" = ChIPnew_merged.lst),
     labs = c("LACZ", "GAF", "BAP", "NURF", "N+B",
              "LACZ", "GAF", "BAP", "NURF", "N+B",
-             "GAF ChIP"),
+             "LACZGAFChIP", "GAFGAFChIP", "BAPGAFChIP"),
     scale_bar_size = 1000,
     pad_left = 500,
     pad_right = 0,
@@ -3687,10 +3779,10 @@ S6D <- browser_plotter.jj(
     geko.gr,
     list("PROseq" = PROseq_normed_merged.lst, 
          "ATACDHS" = ATACDHS_normed_merged.lst,
-         "ChIPseq" = ChIP.lst["GAF_ChIPseq"]),
+         "ChIPseq" = ChIPnew_merged.lst),
     labs = c("LACZ", "GAF", "BAP", "NURF", "N+B",
              "LACZ", "GAF", "BAP", "NURF", "N+B",
-             "GAF ChIP"),
+             "LACZGAFChIP", "GAFGAFChIP", "BAPGAFChIP"),
     scale_bar_size = 1000,
     pad_left = 500,
     pad_right = 0,
@@ -3713,10 +3805,10 @@ S6E <- browser_plotter.jj(
     out.gr,
     list("PROseq" = PROseq_normed_merged.lst, 
          "ATACDHS" = ATACDHS_normed_merged.lst,
-         "ChIPseq" = ChIP.lst["GAF_ChIPseq"]),
+         "ChIPseq" = ChIPnew_merged.lst),
     labs = c("LACZ", "GAF", "BAP", "NURF", "N+B",
              "LACZ", "GAF", "BAP", "NURF", "N+B",
-             "GAF ChIP"),
+             "LACZGAFChIP", "GAFGAFChIP", "BAPGAFChIP"),
     scale_bar_size = 1000,
     pad_left = 0,
     pad_right = 500,
@@ -3729,6 +3821,10 @@ S6E <- browser_plotter.jj(
     )
 
 S6_all <- grid.arrange(S6A, S6B, S6C, S6D, S6E, ncol = 3, nrow = 2)
+
+pdf("S6.pdf")
+grid.draw(S6_all)
+dev.off()
 ```
 
 ## Figure S7
@@ -3872,74 +3968,66 @@ S7_all <- (S7A + S7Ba + S7Bb) / (S7Ba + S7Bb + S7D)  +
 ```
 
 ## Figure 3
-A - Hsp27 browser shot with RNA-seq RPM on right  
+A - GB PRO-seq l2FC vs RNA-seq l2FC NURF-RNAi  
 B - ATAC-MN metaprofile  
 ```{r, collapse = T, error = F, message = F, warning = F, eval = F, echo = T}
-# A - Hsp27 browser shot with RNA-seq RPM on right
-# Getting granges of gene
-hsp27.gr <- genes.gr[which(genes.gr$tx_name == "Hsp27-RA")]
+# A - RNA-seq vs PRO-seq GB scatter plot
+NURF_PRO_RNA.df <- 
+  data.frame(
+    tx_name = row.names(as.data.frame(GB_NURF.res)),
+    PRO_l2FC = as.data.frame(GB_NURF.res)$log2FoldChange,
+    PRO_padj = as.data.frame(GB_NURF.res)$padj,
+    RNA_l2FC = as.data.frame(RNA_NURF.res)$log2FoldChange,
+    RNA_padj = as.data.frame(RNA_NURF.res)$padj
+  )
 
-# Dividing into PR and GB to highlight pause and GB separately
-hsp27_PR.gr <- hsp27.gr
-end(hsp27_PR.gr) <- start(hsp27_PR.gr) + 50
-start(hsp27_PR.gr) <- start(hsp27_PR.gr) + 25
-hsp27_GB.gr <- hsp27.gr
-start(hsp27_GB.gr) <- start(hsp27_GB.gr) + 50
+# Eliminating non-significant rows
+NURF_PRO_RNA.df <- drop_na(NURF_PRO_RNA.df)
+NURF_PRO_RNA.df <- 
+  NURF_PRO_RNA.df[
+    NURF_PRO_RNA.df$PRO_padj < 0.1 & NURF_PRO_RNA.df$RNA_padj < 0.1, 
+    ]
 
-# Adding RNA-seq TPM to GB_labs
-GB_labs <- c(
-  paste0("LACZ_", as.character(round(mean(
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$LACZ_RNAseq_Rep1,
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$LACZ_RNAseq_Rep2
-  )))),
-  paste0("GAF_", as.character(round(mean(
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$GAF_RNAseq_Rep1,
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$GAF_RNAseq_Rep2
-  )))),
-  paste0("BAP_", as.character(round(mean(
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$BAP170_RNAseq_Rep1,
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$BAP170_RNAseq_Rep2
-  )))),
-  paste0("NURF_", as.character(round(mean(
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$NURF301_RNAseq_Rep2
-  )))),
-  paste0("N+B_", as.character(round(mean(
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$NURF301BAP170_RNAseq_Rep1,
-    RNA_normed.tbl[
-      RNA_normed.tbl$tx_name == "Hsp27-RA",]$NURF301BAP170_RNAseq_Rep2
-  ))))
-)
+# Counting number points in each quadrant
+num_top_left <- 
+  nrow(NURF_PRO_RNA.df[
+    NURF_PRO_RNA.df$PRO_l2FC < 0 & NURF_PRO_RNA.df$RNA_l2FC > 0,
+    ])
+num_top_right <- 
+  nrow(NURF_PRO_RNA.df[
+    NURF_PRO_RNA.df$PRO_l2FC > 0 & NURF_PRO_RNA.df$RNA_l2FC > 0,
+    ])
+num_bottom_right <- 
+  nrow(NURF_PRO_RNA.df[
+    NURF_PRO_RNA.df$PRO_l2FC > 0 & NURF_PRO_RNA.df$RNA_l2FC < 0,
+    ])
+num_bottom_left <- 
+  nrow(NURF_PRO_RNA.df[
+    NURF_PRO_RNA.df$PRO_l2FC < 0 & NURF_PRO_RNA.df$RNA_l2FC < 0,
+    ])
 
-# Plotting (see file browserPlotR.R for more detail)
-F3Aa <- browser_plotter.jj(
-    hsp27_PR.gr,
-    list("PROseq" = PROseq_normed_merged.lst),
-    labs = c("", "", "", "", ""),
-    scale_bar_size = 10,
-    pad_left = 0,
-    pad_right = 0,
-    binsize = 1,
-    bin_FUN = mean)
+# Creating annotation df for adding numbers to plot
+annotations <- data.frame(
+        xpos = c(-3.5,-3.5, 3.5, 3.5),
+        ypos =  c(-0.5, 0.5,-0.5, 0.5),
+        annotateText = c(
+          num_bottom_left,
+          num_top_left,
+          num_bottom_right,
+          num_top_right))
 
-F3Ab <- browser_plotter.jj(
-    hsp27_GB.gr,
-    list("PROseq" = PROseq_normed_merged.lst),
-    labs = GB_labs,
-    scale_bar_size = 500,
-    pad_left = 0,
-    pad_right = 0,
-    binsize = 1,
-    bin_FUN = mean)
+F3A <- ggplot(NURF_PRO_RNA.df, aes(x = PRO_l2FC, y = RNA_l2FC))+
+  geom_point(size = 0.5, alpha = 0.75)+
+  ggtheme.jj()+
+  geom_text(
+    data=annotations,
+    aes(x=xpos,y=ypos,label=annotateText))+
+  geom_vline(xintercept = 0, linetype = "dashed", alpha = 0.75) + 
+  geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.75) +
+  coord_cartesian(xlim = c(0, 4), ylim = c(-4, 4), expand = FALSE)+
+  ggtitle("PRO-seq GB vs. RNA-seq")
 
-# C - ATAC-MN metaprofile
+# B - ATAC-MN metaprofile
 # Getting list of NURF-dependent promoters (FDR 0.01)
 PR_NURFres.df <- as.data.frame(PR_NURF.res)
 PR_NURFres.df$tx_name <- row.names(PR_NURFres.df)
@@ -3983,11 +4071,10 @@ F3B <- ggMetaplot(nurfDepPR_ATACMNSub.mat) +
 
 # Laying out panels
 F3_layout <- "
-BCCA
-BCC#
+ABB
 "
 
-F3_all <- F3B + F3Aa + F3Ab +
+F3_all <- F3A + F3B +
   plot_layout(guides = "collect", design = F3_layout)+ 
   plot_annotation(tag_levels = 'A') & 
     theme(plot.tag = element_text(
@@ -4329,12 +4416,11 @@ S8_all <- S8A + S8B + S8C + S8Da + S8Db + S8Dc + S8Ea + S8Eb + S8Ec +
 
 ## Figure S9
 A - HM of GAF/NURF CUT&RUN at all promoters sorted by GAF signal  
-B - GB PRO-seq l2FC vs RNA-seq l2FC NURF-RNAi  
-C - NURF GBupRNAup and GBupRNAdown sorted PI distributions  
-D - NURF GBupRNAup and GBupRNAdown sorted LACZ RNA-seq distributions  
-E - NURF GBupRNAup and GBupRNAdown sorted ATACDHS metaprofiles  
-F - NURF GBupRNAup and GBupRNAdown sorted ATACMN metaprofiles  
-G - NURF GBupRNAup and GBupRNAdown sorted PRO-seq metaprofiles  
+B - NURF GBupRNAup and GBupRNAdown sorted PI distributions  
+C - NURF GBupRNAup and GBupRNAdown sorted LACZ RNA-seq distributions  
+D - NURF GBupRNAup and GBupRNAdown sorted ATACDHS metaprofiles  
+E - NURF GBupRNAup and GBupRNAdown sorted ATACMN metaprofiles  
+F - NURF GBupRNAup and GBupRNAdown sorted PRO-seq metaprofiles  
 ```{r, collapse = T, error = F, message = F, warning = F, eval = F, echo = T}
 # A - HM of GAF/NURF CUT&RUN at all promoters sorted by GAF signal
 # Getting total GAF signal from TSS-500 to TSS in new genes.gr object
@@ -4382,64 +4468,9 @@ S9A <- Heatmap(
   use_raster = F
 )
 
-# B - RNA-seq vs PRO-seq GB scatter plot
-NURF_PRO_RNA.df <- 
-  data.frame(
-    tx_name = row.names(as.data.frame(GB_NURF.res)),
-    PRO_l2FC = as.data.frame(GB_NURF.res)$log2FoldChange,
-    PRO_padj = as.data.frame(GB_NURF.res)$padj,
-    RNA_l2FC = as.data.frame(RNA_NURF.res)$log2FoldChange,
-    RNA_padj = as.data.frame(RNA_NURF.res)$padj
-  )
-
-# Eliminating non-significant rows
-NURF_PRO_RNA.df <- drop_na(NURF_PRO_RNA.df)
-NURF_PRO_RNA.df <- 
-  NURF_PRO_RNA.df[
-    NURF_PRO_RNA.df$PRO_padj < 0.1 & NURF_PRO_RNA.df$RNA_padj < 0.1, 
-    ]
 
 
-# Counting number points in each quadrant
-num_top_left <- 
-  nrow(NURF_PRO_RNA.df[
-    NURF_PRO_RNA.df$PRO_l2FC < 0 & NURF_PRO_RNA.df$RNA_l2FC > 0,
-    ])
-num_top_right <- 
-  nrow(NURF_PRO_RNA.df[
-    NURF_PRO_RNA.df$PRO_l2FC > 0 & NURF_PRO_RNA.df$RNA_l2FC > 0,
-    ])
-num_bottom_right <- 
-  nrow(NURF_PRO_RNA.df[
-    NURF_PRO_RNA.df$PRO_l2FC > 0 & NURF_PRO_RNA.df$RNA_l2FC < 0,
-    ])
-num_bottom_left <- 
-  nrow(NURF_PRO_RNA.df[
-    NURF_PRO_RNA.df$PRO_l2FC < 0 & NURF_PRO_RNA.df$RNA_l2FC < 0,
-    ])
-
-# Creating annotation df for adding numbers to plot
-annotations <- data.frame(
-        xpos = c(-3.5,-3.5, 3.5, 3.5),
-        ypos =  c(-0.5, 0.5,-0.5, 0.5),
-        annotateText = c(
-          num_bottom_left,
-          num_top_left,
-          num_bottom_right,
-          num_top_right))
-
-S9B <- ggplot(NURF_PRO_RNA.df, aes(x = PRO_l2FC, y = RNA_l2FC))+
-  geom_point(size = 0.5, alpha = 0.75)+
-  ggtheme.jj()+
-  geom_text(
-    data=annotations,
-    aes(x=xpos,y=ypos,label=annotateText))+
-  geom_vline(xintercept = 0, linetype = "dashed", alpha = 0.75) + 
-  geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.75) +
-  coord_cartesian(xlim = c(-4, 4), ylim = c(-4, 4), expand = FALSE)+
-  ggtitle("PRO-seq GB vs. RNA-seq")
-
-# C - NURF GBupRNAup and GBupRNAdown sorted PI distributions
+# B - NURF GBupRNAup and GBupRNAdown sorted PI distributions
 # Getting lists of genes
 NURFupRNAup.gr <- 
   genes.gr[
@@ -4508,7 +4539,7 @@ PI.df <- rbind(
   data.frame(class = "NURFupRNAdown", PI = NURFupRNAdown.gr$PI)
 )
 
-S9C <- ggplot(PI.df, aes(x = class, y = PI, fill = class))+
+S9B <- ggplot(PI.df, aes(x = class, y = PI, fill = class))+
   geom_violin()+
   geom_boxplot(width = 0.2, fill = "white", outlier.shape = NA)+
   stat_compare_means(method = "wilcox.test")+
@@ -4529,7 +4560,7 @@ S9C <- ggplot(PI.df, aes(x = class, y = PI, fill = class))+
   )
 
 
-# D - NURF GBupRNAup and GBupRNAdown sorted LACZ RNA-seq distributions
+# C - NURF GBupRNAup and GBupRNAdown sorted LACZ RNA-seq distributions
 # Adding LACZ RNA-seq signal
 NURFupRNAup.gr$RNA_signal <- 
   getCountsByRegions(
@@ -4548,7 +4579,7 @@ RNA.df <- rbind(
   data.frame(class = "NURFupRNAdown", RNA = NURFupRNAdown.gr$RNA_signal)
 )
 
-S9D <- ggplot(RNA.df, aes(x = class, y = RNA, fill = class))+
+S9C <- ggplot(RNA.df, aes(x = class, y = RNA, fill = class))+
   geom_violin()+
   geom_boxplot(width = 0.2, fill = "white", outlier.shape = NA)+
   stat_compare_means(method = "wilcox.test")+
@@ -4568,7 +4599,7 @@ S9D <- ggplot(RNA.df, aes(x = class, y = RNA, fill = class))+
     expand = c(0,0)
   )
 
-# E - NURF GBupRNAup and GBupRNAdown sorted ATACDHS metaprofiles
+# D - NURF GBupRNAup and GBupRNAdown sorted ATACDHS metaprofiles
 NURFupRNAupATACDHS.df <-
     metaSubsample(
         dataset.gr = ATACDHS_normed_merged.lst,
@@ -4594,7 +4625,7 @@ NURFupRNAdownATACDHS.df$class <- "up_down"
 nurfSorted_ATACDHS.df <- rbind(NURFupRNAupATACDHS.df,
                                NURFupRNAdownATACDHS.df)
 
-S9E <- ggMetaplot(nurfSorted_ATACDHS.df) +
+S9D <- ggMetaplot(nurfSorted_ATACDHS.df) +
     gg_color_scale_RNAi_ATACDHS + 
     gg_fill_scale_RNAi_ATACDHS +
     scale_x_continuous(
@@ -4609,7 +4640,7 @@ S9E <- ggMetaplot(nurfSorted_ATACDHS.df) +
   facet_grid(~class)
 
 
-# F - NURF GBupRNAup and GBupRNAdown sorted ATACMN metaprofiles
+# E - NURF GBupRNAup and GBupRNAdown sorted ATACMN metaprofiles
 NURFupRNAupATACMN.df <-
     metaSubsample(
         dataset.gr = ATACMN_normed_merged.lst,
@@ -4635,7 +4666,7 @@ NURFupRNAdownATACMN.df$class <- "up_down"
 nurfSorted_ATACMN.df <- rbind(NURFupRNAupATACMN.df,
                                NURFupRNAdownATACMN.df)
 
-S9F <- ggMetaplot(nurfSorted_ATACMN.df) +
+S9E <- ggMetaplot(nurfSorted_ATACMN.df) +
     gg_color_scale_RNAi_ATACDHS + 
     gg_fill_scale_RNAi_ATACDHS +
     scale_x_continuous(
@@ -4649,7 +4680,7 @@ S9F <- ggMetaplot(nurfSorted_ATACMN.df) +
   ggtitle("ATAC 130-200 bp")+
   facet_grid(~class)
 
-# G - NURF GBupRNAup and GBupRNAdown sorted PRO-seq metaprofiles
+# F - NURF GBupRNAup and GBupRNAdown sorted PRO-seq metaprofiles
 NURFupRNAup_PR.mat <- 
      metaSubsample(
         dataset.gr = PROseq_normed_merged.lst,
@@ -4725,7 +4756,7 @@ nurfSorted_GB.mat <- rbind(
 )
 
 # Plotting promoter
-S9Ga <- ggMetaplot(nurfSorted_PR.mat)+
+S9Fa <- ggMetaplot(nurfSorted_PR.mat)+
     gg_color_scale_RNAi_PROseq + 
     gg_fill_scale_RNAi_PROseq +
     scale_x_continuous(
@@ -4744,7 +4775,7 @@ S9Ga <- ggMetaplot(nurfSorted_PR.mat)+
   facet_grid(class~.)
              
 # Plotting gene body
-S9Gb <- ggMetaplot(nurfSorted_GB.mat)+
+S9Fb <- ggMetaplot(nurfSorted_GB.mat)+
     gg_color_scale_RNAi_PROseq + 
     gg_fill_scale_RNAi_PROseq +
     scale_y_continuous(
